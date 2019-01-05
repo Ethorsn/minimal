@@ -1,5 +1,4 @@
 <div class="item">
-
     {{ $.Scratch.Set "link" .RelPermalink }}
     {{ with .Params.repo }}
         {{ $repoHost := default "github" $.Params.repoHost }}
@@ -13,13 +12,34 @@
     {{ end }}
     {{ with .Params.link }} {{ $.Scratch.Set "link" . }} {{ end }}
 
-    {{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") | $.Scratch.Set "subtitle" }}
+    {{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") | $.Scratch.Set "date" }}
     {{ with .Description }} {{ $.Scratch.Set "subtitle" . }} {{ end }}
-
-    <h4><a href="{{ .Scratch.Get "link" }}">{{ .Title }}</a></h4>
-    <h5>{{ $.Scratch.Get "subtitle" }}</h5>
-    {{ range .Params.tags }}
-    <a href="{{ $.Site.BaseURL }}tags/{{ . | urlize }}"><kbd class="item-tag">{{ . }}</kbd></a>
-    {{ end }}
-
+    <dl>
+		<dt>
+			<h3 style="display:inline;">
+				<a href="{{ .Scratch.Get "link" }}">
+					{{ .Title }}
+				</a>
+			</h3>
+			&nbsp
+			<h5 style="display:inline;">
+				{{ $.Scratch.Get "date" }}
+			</h5>
+			&nbsp
+			{{ range .Params.tags }}
+			<a href="{{ $.Site.BaseURL }}tags/{{ . }}" style="display:inline;">
+				<kbd class="item-tag">{{ . }}</kbd></a>
+			{{ end }}
+		</dt>
+		<hr/>
+		<dd style="float:left;padding:3px">
+		<!-- From blog https://yihui.name/en/2017/08/hugo-post-summary/ -->
+		{{ with .Description }}
+		  {{ $.Scratch.Set "summary" (markdownify .) }}
+		{{ else }}
+		  {{ $.Scratch.Set "summary" ((delimit (findRE "(<p.*?>(.|\n)*?</p>\\s*)+" .Content) "[&hellip;] ") | plainify | truncate (default 200 .Site.Params.summary_length) (default " &hellip;" .Site.Params.text.truncated ) | replaceRE "&amp;" "&" | safeHTML) }}
+		{{ end }}
+		{{ $.Scratch.Get "summary" }}
+		</dd>
+    </dl>
 </div>

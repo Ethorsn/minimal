@@ -1,17 +1,25 @@
 {{ partial "header" . }}
 
 <main>
+	<div class="container">
+		<div class="column-left">
 
-    <div class="intro">
+			{{ with .Site.Params.profilePic }}
+			<img class="profile" src="{{ . }}">
+			{{ end }}
 
-        {{ with .Site.Params.profilePic }} <img class="profile" src="{{ . }}"> {{ end }}
+			<h1>{{ .Site.Title }}</h1>
 
-        <h1>{{ .Site.Title }}</h1>
+			<h5>{{ markdownify .Site.Params.Description }}</h5>
+		</div>
 
-        <h2>{{ markdownify .Site.Params.Description }}</h2>
-
-    </div>
-
+		<div class="column-right">
+			{{ range first 3 .Data.Pages.ByDate.Reverse }}
+			{{ partial "list-item" . }}
+			{{ end }}
+		</div>
+	</div>
 </main>
 
+{{ partial "paginator" . }}
 {{ partial "footer" . }}

@@ -3,17 +3,18 @@ html, body {
 }
 
 body {
+	display: flex;
     padding-top: 55px;
-    display: flex;
     text-align: center;
     flex-direction: column;
+	padding-left: 20px;
 }
 
 main {
     margin: auto;
-    padding: 25px;
-    flex: 1 0 auto;
-    max-width: 750px;
+    padding: 20px;
+    text-align: left;
+	padding-left: 20px;
 }
 
 /*footer*/
@@ -24,26 +25,42 @@ main {
 
 /*home page*/
 
-.intro {
-    transform: translateY(22vh);
+.container {
+    display: table;
+	vertical-align: center;
+	column-count: 2;
+	column-gap: 0;
 }
 
-.intro > h1 {
-    color: #212121;
-    font-size: 12vh;
+.column-left {
+    transform: translateY(1vh);
+    width: 30%;
+	vertical-align: middle;
+    float: left;
+	padding-right: 10px;
 }
 
-.intro > h2 {
-    color: #757575;
-    font-size: 3vmin;
-}
-
-.intro > .profile {
-    width: 10vh;
-    height: 10vh;
+.column-left > .profile {
+    width: 60%;
     border-radius: 50%;
 }
 
+.column-left-sticky {
+	position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 60px;
+    transform: translateY(1vh);
+    width: 30%;
+	vertical-align: middle;
+    float: left;
+	padding-right: 10px;
+}
+
+.column-right{
+    width: 65%;
+	padding-left: 10px;
+	float: right;
+}
 /*apply accent colour to links*/
 
 a:link, a:visited {
@@ -71,7 +88,8 @@ a:hover {
 /*list item for posts and projects*/
 
 .item {
-    padding: 10px 0;
+    padding: 10px;
+	padding-bottom: 50px;
 }
 
 .item-tag {
