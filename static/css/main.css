@@ -50,14 +50,14 @@ main {
     position: sticky;
     top: 60px;
     transform: translateY(1vh);
-    width: 30%;
+    width: 20%;
 	vertical-align: middle;
     float: left;
 	padding-right: 10px;
 }
 
 .column-right{
-    width: 65%;
+    width: 60%;
 	padding-left: 10px;
 	float: right;
 }

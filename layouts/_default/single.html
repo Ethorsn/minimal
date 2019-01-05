@@ -5,16 +5,18 @@
 	{{ partial "list-item" . }}
 	</div>
 	<br>
-	<hr>
-	<!-- This starts the blog post and the stuff in it -->
 	<div class="container">
+	<hr>
+	<!-- This starts the blog post and the stuff in it
 		<div class="column-left-sticky" >
 			<aside>
 			{{ .TableOfContents }}
 			</aside>
-		</div>
-
-	   <div class="column-right" style="position: relative;">
+	</div>
+	<div class="column-right" style="position: relative;">
+	# place content here if to go back to TOC layout
+	</div>
+	-->
 			{{ .Content }}
 
 		<!-- related posts with the same tags -->
@@ -29,7 +31,6 @@
 
 				{{ template "_internal/disqus.html" . }}
 			{{ end }}
-		</div>
 	</div>
 </main>
 
